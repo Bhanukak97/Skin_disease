@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "971410079138",
+    "project_id": "skin-disease-c823c",
+    "storage_bucket": "skin-disease-c823c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971410079138:android:5c2ebae25cb08b233c46fb",
+        "android_client_info": {
+          "package_name": "com.skin_disease"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "971410079138-p7k2kbf4sj266jo7nu27jfl35nvi5qo8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBv_PChRGW68HBJvN2QpUWmqvXGzhQsj2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "971410079138-p7k2kbf4sj266jo7nu27jfl35nvi5qo8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
