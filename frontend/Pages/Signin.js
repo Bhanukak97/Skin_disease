@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -8,7 +8,45 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {auth} from '../Firebase/Firebase';
+
 const SignIn = ({navigation}) => {
+const[email,setEmail]= useState('')
+const[password, setPassword]= useState('')
+const[error,setError] =useState('')
+
+//const auth = getAuth();
+
+//Function to authenticate the user
+function authenticateUser(email, password) {
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // User authenticated successfully
+      const user = userCredential.user;
+      console.log('User authenticated:', user.uid);
+
+      // Retrieve user data from the database
+      const userId = user.uid;
+      const userRef = ref(db, 'users/' + userId);
+      onValue(userRef, (snapshot) => {
+        const userData = snapshot.val();
+        console.log('User data:', userData);
+        // Process user data
+      }, (error) => {
+        console.error(error);
+      });
+    })
+    .catch((error) => {
+      // Handle authentication errors
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      setError(errorMessage)
+      console.error(errorCode, errorMessage);
+    });
+}
+
+
   return (
     <View style={styles.maincontainer}>
       <View style={styles.topView}>
@@ -24,24 +62,30 @@ const SignIn = ({navigation}) => {
         </Text>
         <View style={styles.formView}>
           <TextInput
+          value={email}
             placeholderTextColor={'#fff'}
             placeholder="Email address *"
             style={styles.textinput}
+            onChangeText={data => {
+              setEmail(data);
+            }}
           />
           <TextInput
+          value={password}
             placeholderTextColor={'#fff'}
             placeholder="Password *"
             secureTextEntry={true}
             style={styles.textinput}
+            onChangeText={data => {
+              setPassword(data);
+            }}
           />
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button}   onPress={() =>{error?null: navigation.navigate('Home'),authenticateUser(email,password)}}>
             <Text style={styles.buttonText}>Sign In</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.signupButton}>
-          <Text
-            style={styles.signupText}
-            onPress={() => navigation.navigate('SignUp')}>
+        <TouchableOpacity style={styles.signupButton} onPress={()=>{navigation.navigate('SignUp')}}>
+          <Text style={styles.signupText}>
             Sign up
           </Text>
         </TouchableOpacity>
