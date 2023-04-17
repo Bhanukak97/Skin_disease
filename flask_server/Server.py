@@ -56,4 +56,4 @@ def predict():
     return predicted_class_name
 
 if __name__ == "__main__":
-    app.run(debug=True,host="192.168.0.64",port=5000)
+    app.run(debug=True,host="192.168.2.12",port=5000)
