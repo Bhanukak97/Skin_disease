@@ -7,7 +7,7 @@ const Prediction = () => {
   const [predictedClass, setPredictedClass] = useState('');
 
   // useEffect(() => {
-  //   fetch('http://192.168.0.64:5000/home')
+  //   fetch('http://192.168.2.12:5000/home')
   //     .then(response => {
   //       if (response.ok) {
   //         return response.json();
@@ -41,7 +41,7 @@ const Prediction = () => {
       name: 'image.jpg'
     });
   
-    const response = await fetch('http://192.168.0.64:5000/predict', {
+    const response = await fetch('http://192.168.2.12:5000/predict', {
       method: 'POST',
       body: formData
     }).catch(error => {
