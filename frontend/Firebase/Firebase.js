@@ -1,8 +1,9 @@
 import { initializeApp } from 'firebase/app';
-import {getDatabase} from 'firebase/database'
+import { getAuth } from 'firebase/auth';
+import {getDatabase,} from 'firebase/database'
 
 const firebaseConfig={
-    apiKey: "AIzaSyDzPvPNffmQ_36G89lxklzz650_PEOAVAk",
+  apiKey: "AIzaSyDzPvPNffmQ_36G89lxklzz650_PEOAVAk",
   authDomain: "skin-disease-62716.firebaseapp.com",
   projectId: "skin-disease-62716",
   storageBucket: "skin-disease-62716.appspot.com",
@@ -11,5 +12,9 @@ const firebaseConfig={
 }
 
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app)
 
-export const db = getDatabase(app)
+export { auth, db };
+
+
