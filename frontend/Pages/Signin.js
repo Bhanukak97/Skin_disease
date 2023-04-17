@@ -68,9 +68,9 @@ const SignIn = ({navigation}) => {
             placeholderTextColor={'#fff'}
             placeholder="Email address *"
             style={styles.textinput}
-            onChangeText={data => {
-              setEmail(data);
-            }}
+            // onChangeText={data => {
+            //   setEmail(data);
+            // }}
           />
           <TextInput
           //value={password}
@@ -78,9 +78,9 @@ const SignIn = ({navigation}) => {
             placeholder="Password *"
             secureTextEntry={true}
             style={styles.textinput}
-            onChangeText={data => {
-              setPassword(data);
-            }}
+            // onChangeText={data => {
+            //   setPassword(data);
+            // }}
           />
           <TouchableOpacity style={styles.button}   onPress={() =>{ navigation.navigate('Home')}}>
             <Text style={styles.buttonText}>Sign In</Text>
