@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   View,
@@ -8,44 +8,46 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import {auth} from '../Firebase/Firebase';
+// import { ref, query, equalTo, once,orderByChild } from 'firebase/database';
+// import {db} from '../Firebase/Firebase';
 
 const SignIn = ({navigation}) => {
-const[email,setEmail]= useState('')
-const[password, setPassword]= useState('')
-const[error,setError] =useState('')
 
-//const auth = getAuth();
+// const authenticateUser = async (email, password) => {
+//   const usersRef = ref(db, 'users/');
+//   const emailQuery = query(usersRef, orderByChild('Email'), equalTo(email));
 
-//Function to authenticate the user
-function authenticateUser(email, password) {
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // User authenticated successfully
-      const user = userCredential.user;
-      console.log('User authenticated:', user.uid);
+//   try {
+//     const snapshot = await once(emailQuery);
+//     const user = snapshot.val();
 
-      // Retrieve user data from the database
-      const userId = user.uid;
-      const userRef = ref(db, 'users/' + userId);
-      onValue(userRef, (snapshot) => {
-        const userData = snapshot.val();
-        console.log('User data:', userData);
-        // Process user data
-      }, (error) => {
-        console.error(error);
-      });
-    })
-    .catch((error) => {
-      // Handle authentication errors
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      setError(errorMessage)
-      console.error(errorCode, errorMessage);
-    });
-}
+  //   if (!user) {
+  //     console.log('No user found with email:', email);
+  //     setError('No user found with that email.');
+  //     return;
+  //   }
 
+  //   if (user.password !== password) {
+  //     console.log('Incorrect password');
+  //     setError('Incorrect password');
+  //     return;
+  //   }
+
+  //   console.log('User authenticated:', user.uid);
+
+  //   const userId = user.uid;
+  //   const userRef = ref(db, `users/${userId}`);
+  //   const userData = await once(userRef);
+
+  //   console.log('User data:', userData.val());
+
+  //   // Process user data
+  //   navigation.navigate('Home');
+//   } catch (error) {
+//     console.error(error);
+//     setError('An error occurred. Please try again.');
+//   }
+// };
 
   return (
     <View style={styles.maincontainer}>
@@ -62,7 +64,7 @@ function authenticateUser(email, password) {
         </Text>
         <View style={styles.formView}>
           <TextInput
-          value={email}
+          //value={email}
             placeholderTextColor={'#fff'}
             placeholder="Email address *"
             style={styles.textinput}
@@ -71,7 +73,7 @@ function authenticateUser(email, password) {
             }}
           />
           <TextInput
-          value={password}
+          //value={password}
             placeholderTextColor={'#fff'}
             placeholder="Password *"
             secureTextEntry={true}
@@ -80,7 +82,7 @@ function authenticateUser(email, password) {
               setPassword(data);
             }}
           />
-          <TouchableOpacity style={styles.button}   onPress={() =>{error?null: navigation.navigate('Home'),authenticateUser(email,password)}}>
+          <TouchableOpacity style={styles.button}   onPress={() =>{ navigation.navigate('Home')}}>
             <Text style={styles.buttonText}>Sign In</Text>
           </TouchableOpacity>
         </View>
